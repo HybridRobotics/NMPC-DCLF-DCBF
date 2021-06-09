@@ -1,5 +1,3 @@
-# NMPC-CLF-CBF
-
 In this repository, we presents a collection of our work using nonlinear model predictive control (NMPC) with control Lyapunov functions (CLFs) and control barrier functions (CBFs).
 The implementation code for corresponding papers will be merged here and new papers will be added in an inverse order of submission.
 
