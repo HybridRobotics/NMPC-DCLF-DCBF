@@ -15,13 +15,13 @@ t0 = 0.0;
 
 gammalist = [0.05, 0.10, 0.15, 0.2];
 
-%% MPC-CBF simulator
-mpccbf_simulators = {};
+%% MPC-DCBF simulator
+mpcdcbf_simulators = {};
 for index = 1:length(gammalist)
-    mpccbf_simulators{index} = CBFDT(system_param, x0, t0);
-    param_mpccbf = ParamMPCCBF(8, gammalist(index), 10.0*eye(3), 10.0*eye(3), 1.0);
-    mpccbf_simulators{index}.setOpt('mpccbf', param_mpccbf);
-    mpccbf_simulators{index}.sim(10.0);
+    mpcdcbf_simulators{index} = CBFDT(system_param, x0, t0);
+    param_mpcdcbf = ParamMPCDCBF(8, gammalist(index), 10.0*eye(3), 10.0*eye(3), 1.0);
+    mpcdcbf_simulators{index}.setOpt('mpcdcbf', param_mpcdcbf);
+    mpcdcbf_simulators{index}.sim(10.0);
 end
 
 %% MPC-GCBF simulator
@@ -33,13 +33,13 @@ for index = 1:length(gammalist)
     mpcgcbf_simulators{index}.sim(10.0);
 end
 
-%% CBF-NMPC simulator
-cbfnmpc_simulators = {};
+%% NMPC-DCBF simulator
+nmpcdcbf_simulators = {};
 for index = 1:length(gammalist)
-    cbfnmpc_simulators{index} = CBFDT(system_param, x0, t0);
-    param_cbfnmpc = ParamCBFNMPC(8, 8, gammalist(index), 10.0*eye(3), 10.0*eye(3), 1.0, 10.0);
-    cbfnmpc_simulators{index}.setOpt('cbfnmpc', param_cbfnmpc);
-    cbfnmpc_simulators{index}.sim(10.0);
+    nmpcdcbf_simulators{index} = CBFDT(system_param, x0, t0);
+    param_nmpcdcbf = ParamNMPCDCBF(8, 8, gammalist(index), 10.0*eye(3), 10.0*eye(3), 1.0, 10.0);
+    nmpcdcbf_simulators{index}.setOpt('nmpcdcbf', param_nmpcdcbf);
+    nmpcdcbf_simulators{index}.sim(10.0);
 end
 
 %% Plotting
@@ -52,16 +52,16 @@ set(gca,'LineWidth', 0.2, 'FontSize', 20);
 hold on;
 grid on;
 set(gca, 'YScale', 'log');
-plot(mpccbf_simulators{2}.tlog, -mpccbf_simulators{2}.xlog(1, :), 'Color', color2, 'LineWidth', 1.0);
-plot(mpccbf_simulators{3}.tlog, -mpccbf_simulators{3}.xlog(1, :), 'Color', color3, 'LineWidth', 1.0);
-plot(mpccbf_simulators{4}.tlog, -mpccbf_simulators{4}.xlog(1, :), 'Color', color4, 'LineWidth', 1.0);
-h_legend = legend('MPC-CBF ($\gamma=0.10$)', 'MPC-CBF ($\gamma=0.15$)', 'MPC-CBF ($\gamma=0.20$)');
+plot(mpcdcbf_simulators{2}.tlog, -mpcdcbf_simulators{2}.xlog(1, :), 'Color', color2, 'LineWidth', 1.0);
+plot(mpcdcbf_simulators{3}.tlog, -mpcdcbf_simulators{3}.xlog(1, :), 'Color', color3, 'LineWidth', 1.0);
+plot(mpcdcbf_simulators{4}.tlog, -mpcdcbf_simulators{4}.xlog(1, :), 'Color', color4, 'LineWidth', 1.0);
+h_legend = legend('MPC-DCBF ($\gamma=0.10$)', 'MPC-DCBF ($\gamma=0.15$)', 'MPC-DCBF ($\gamma=0.20$)');
 set(h_legend, 'Interpreter','latex', 'Location', 'SouthWest');
 xlim([0, 10]);
 % save data and generate figures
-print(gcf, 'figures/safety-mpccbf.eps', '-depsc');
-print(gcf, 'figures/safety-mpccbf.png', '-dpng', '-r800');
-save('data/safety-mpccbf.mat');
+print(gcf, 'figures/safety-mpcdcbf.eps', '-depsc');
+print(gcf, 'figures/safety-mpcdcbf.png', '-dpng', '-r800');
+save('data/safety-mpcdcbf.mat');
 
 figure('Renderer', 'painters', 'Position', [0 0 500 400]);
 set(gca,'LineWidth', 0.2, 'FontSize', 20);
@@ -85,16 +85,14 @@ set(gca,'LineWidth', 0.2, 'FontSize', 20);
 hold on;
 grid on;
 set(gca, 'YScale', 'log');
-plot(cbfnmpc_simulators{1}.tlog, -cbfnmpc_simulators{1}.xlog(1, :), 'Color', color1, 'LineWidth', 1.0);
-plot(cbfnmpc_simulators{2}.tlog, -cbfnmpc_simulators{2}.xlog(1, :), 'Color', color2, 'LineWidth', 1.0);
-plot(cbfnmpc_simulators{3}.tlog, -cbfnmpc_simulators{3}.xlog(1, :), 'Color', color3, 'LineWidth', 1.0);
-plot(cbfnmpc_simulators{4}.tlog, -cbfnmpc_simulators{4}.xlog(1, :), 'Color', color4, 'LineWidth', 1.0);
-h_legend = legend('CBF-NMPC ($\gamma=0.05$)', 'CBF-NMPC ($\gamma=0.10$)', 'CBF-NMPC ($\gamma=0.15$)', 'CBF-NMPC ($\gamma=0.20$)');
+plot(nmpcdcbf_simulators{1}.tlog, -nmpcdcbf_simulators{1}.xlog(1, :), 'Color', color1, 'LineWidth', 1.0);
+plot(nmpcdcbf_simulators{2}.tlog, -nmpcdcbf_simulators{2}.xlog(1, :), 'Color', color2, 'LineWidth', 1.0);
+plot(nmpcdcbf_simulators{3}.tlog, -nmpcdcbf_simulators{3}.xlog(1, :), 'Color', color3, 'LineWidth', 1.0);
+plot(nmpcdcbf_simulators{4}.tlog, -nmpcdcbf_simulators{4}.xlog(1, :), 'Color', color4, 'LineWidth', 1.0);
+h_legend = legend('NMPC-DCBF ($\gamma=0.05$)', 'NMPC-DCBF ($\gamma=0.10$)', 'NMPC-DCBF ($\gamma=0.15$)', 'NMPC-DCBF ($\gamma=0.20$)');
 set(h_legend, 'Interpreter','latex', 'Location', 'SouthWest');
 xlim([0, 10]);
 % save data and generate figures
-print(gcf, 'figures/safety-cbfnmpc.eps', '-depsc');
-print(gcf, 'figures/safety-cbfnmpc.png', '-dpng', '-r800');
-save('data/safety-cbfnmpc.mat');
-
-%% Comparison with different p_omega
+print(gcf, 'figures/safety-nmpcdcbf.eps', '-depsc');
+print(gcf, 'figures/safety-nmpcdcbf.png', '-dpng', '-r800');
+save('data/safety-nmpccbf.mat');

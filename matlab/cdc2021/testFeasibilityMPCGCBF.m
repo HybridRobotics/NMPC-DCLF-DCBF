@@ -1,7 +1,7 @@
 clc
 close all
 clear
-% This file tests feasibility between MPC-GCBF and CBF-NMPC.
+% This file tests feasibility between MPC-GCBF and NMPC-DCBF.
 
 %% System setup
 
@@ -22,17 +22,17 @@ for gammaindex = 1:length(gammalist)
     simulator_mpcgcbf = CBFDT(system_param, x0, t0);
     param_mpcgcbf = ParamMPCGCBF(8, gammalist(gammaindex), 10.0*eye(3), 10.0*eye(3), 1.0);
     simulator_mpcgcbf.setOpt('mpcgcbf', param_mpcgcbf);
-    % CBF-NMPC simulator
-    simulator_cbfnmpc = CBFDT(system_param, x0, t0);
-    param_cbfnmpc = ParamCBFNMPC(8, 3, gammalist(gammaindex), 10.0*eye(3), 10.0*eye(3), 1.0, 10.0);
-    simulator_cbfnmpc.setOpt('cbfnmpc', param_cbfnmpc);
+    % NMPC-DCBF simulator
+    simulator_nmpccbf = CBFDT(system_param, x0, t0);
+    param_nmpcdcbf = ParamNMPCDCBF(8, 3, gammalist(gammaindex), 10.0*eye(3), 10.0*eye(3), 1.0, 10.0);
+    simulator_nmpccbf.setOpt('nmpcdcbf', param_nmpcdcbf);
     % iterate over states
     x1list = linspace(-2,0,11);
     x2list = linspace(0,2,11);
     x3list = linspace(0,2,11);
     % data collection
     feas_points_mpcgcbf = [];
-    feas_points_cbfnmpc = [];
+    feas_points_nmpcdcbf = [];
     infeas_points_all = [];
     
     %% Test feasibility with sampling states among controllers
@@ -44,16 +44,16 @@ for gammaindex = 1:length(gammalist)
                 % solve the problem with MPC-GCBF
                 simulator_mpcgcbf.xcurr = xfeas;
                 [feas_mpcgcbf, ~, ~, ~] = simulator_mpcgcbf.solve;
-                % solve the problem with CBF-NMPC
-                simulator_cbfnmpc.xcurr = xfeas;
-                [feas_cbfnmpc, ~, ~, ~] = simulator_cbfnmpc.solve;
+                % solve the problem with NMPC-DCBF
+                simulator_nmpccbf.xcurr = xfeas;
+                [feas_nmpcdcbf, ~, ~, ~] = simulator_nmpccbf.solve;
                 if feas_mpcgcbf == 1
                     feas_points_mpcgcbf = [feas_points_mpcgcbf, xfeas];
                 end
-                if feas_cbfnmpc == 1
-                    feas_points_cbfnmpc = [feas_points_cbfnmpc, xfeas];
+                if feas_nmpcdcbf == 1
+                    feas_points_nmpcdcbf = [feas_points_nmpcdcbf, xfeas];
                 end
-                if feas_mpcgcbf == 0 && feas_cbfnmpc == 0
+                if feas_mpcgcbf == 0 && feas_nmpcdcbf == 0
                     infeas_points_all = [infeas_points_all, xfeas];
                 end
             end
@@ -69,13 +69,13 @@ for gammaindex = 1:length(gammalist)
     hold on;
     scatter3(feas_points_mpcgcbf(1,:),feas_points_mpcgcbf(2,:),feas_points_mpcgcbf(3,:),...
         5, 'o', 'LineWidth', 1.0, 'MarkerEdgeColor', inner_color, 'MarkerFaceColor', inner_color);
-    scatter3(feas_points_cbfnmpc(1,:),feas_points_cbfnmpc(2,:),feas_points_cbfnmpc(3,:),...
+    scatter3(feas_points_nmpcdcbf(1,:),feas_points_nmpcdcbf(2,:),feas_points_nmpcdcbf(3,:),...
         20, 'o', 'LineWidth', 1.2, 'MarkerEdgeColor', outer_color);
     axis equal
     if gammaindex == 1
         h=get(gca,'Children');
         h_legend = legend(h([end, end-1]),...
-            {'MPC-GCBF', 'CBF-NMPC'}, 'Location', 'NorthEast');
+            {'MPC-GCBF', 'NMPC-DCBF'}, 'Location', 'NorthEast');
         set(h_legend, 'Interpreter','latex');
     end
     set(gca,'LineWidth', 1.0, 'FontSize', 15);

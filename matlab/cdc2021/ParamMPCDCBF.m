@@ -1,4 +1,4 @@
-classdef ParamMPCCBF < handle
+classdef ParamMPCDCBF < handle
     properties
         horizon
         gamma
@@ -7,7 +7,7 @@ classdef ParamMPCCBF < handle
         uWeight
     end
     methods
-        function self = ParamMPCCBF(horizon, gamma, P, x_weight, u_weight)
+        function self = ParamMPCDCBF(horizon, gamma, P, x_weight, u_weight)
             self.horizon = horizon;
             self.gamma = gamma;
             self.P = P;
