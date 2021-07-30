@@ -48,14 +48,14 @@ classdef CBFDT < handle
         function [feas, xopt, uopt, Jopt] = solve(self)
             if strcmp(self.optType,'dclfdcbf')
                 [feas, xopt, uopt, Jopt] = solveDCLFDCBF(self);
-            elseif strcmp(self.optType,'clfcbfnmpc')
-                [feas, xopt, uopt, Jopt] = solveCLFCBFNMPC(self);
-            elseif strcmp(self.optType,'mpccbf')
-                [feas, xopt, uopt, Jopt] = solveMPCCBF(self);
+            elseif strcmp(self.optType,'nmpcdclfdcbf')
+                [feas, xopt, uopt, Jopt] = solveNMPCDCLFDCBF(self);
+            elseif strcmp(self.optType,'mpcdcbf')
+                [feas, xopt, uopt, Jopt] = solveMPCDCBF(self);
             elseif strcmp(self.optType,'mpcgcbf')
                 [feas, xopt, uopt, Jopt] = solveMPCGCBF(self);
-            elseif strcmp(self.optType,'cbfnmpc')
-                [feas, xopt, uopt, Jopt] = solveCBFNMPC(self);
+            elseif strcmp(self.optType,'nmpcdcbf')
+                [feas, xopt, uopt, Jopt] = solveNMPCDCBF(self);
             else
                 disp('optimal control policy undefined');
             end
@@ -101,7 +101,7 @@ classdef CBFDT < handle
             fprintf('solver time: %f\n', diagnostics.solvertime);
         end
         
-        function [feas, xopt, uopt, Jopt] = solveCLFCBFNMPC(self)
+        function [feas, xopt, uopt, Jopt] = solveNMPCDCLFDCBF(self)
             x = sdpvar(self.xdim, self.optParam.horizon + 1);
             u = sdpvar(self.udim, self.optParam.horizon);
             s = sdpvar(1,self.optParam.horizonCLF);
@@ -153,7 +153,7 @@ classdef CBFDT < handle
             fprintf('solver time: %f\n', diagnostics.solvertime);
         end
         
-        function [feas, xopt, uopt, Jopt] = solveMPCCBF(self)
+        function [feas, xopt, uopt, Jopt] = solveMPCDCBF(self)
             x = sdpvar(self.xdim, self.optParam.horizon + 1);
             u = sdpvar(self.udim, self.optParam.horizon);
             cost = 0;
@@ -232,7 +232,7 @@ classdef CBFDT < handle
             fprintf('solver time: %f\n', diagnostics.solvertime);
         end
         
-        function [feas, xopt, uopt, Jopt] = solveCBFNMPC(self)
+        function [feas, xopt, uopt, Jopt] = solveNMPCDCBF(self)
             x = sdpvar(self.xdim, self.optParam.horizon + 1);
             u = sdpvar(self.udim, self.optParam.horizon);
             omega = sdpvar(1,self.optParam.horizonCBF);

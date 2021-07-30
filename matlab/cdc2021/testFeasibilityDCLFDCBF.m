@@ -1,7 +1,7 @@
 clc
 close all
 clear
-% This file tests feasibility between DCLF-DCBF and CLF-CBF-NMPC.
+% This file tests feasibility between DCLF-DCBF and NMPC-DCLF-DCBF.
 
 %% System setup
 
@@ -20,19 +20,19 @@ for gammaindex = 1:length(gammalist)
     
     % MPC-GCBF simulator
     simulator_dclfdcbf = CBFDT(system_param, x0, t0);
-    param_mpcgcbf = ParamDCLFDCBF(0.1, gammalist(gammaindex), 10 * eye(3), 1.0, 10.0);
-    simulator_dclfdcbf.setOpt('dclfdcbf', param_mpcgcbf);
-    % CBF-NMPC simulator
-    simulator_clfcbfnmpc = CBFDT(system_param, x0, t0);
-    param_clfcbfnmpc = ParamCLFCBFNMPC(8, 8, 8, 0.1, gammalist(gammaindex), 10.0 * eye(3), 10.0 * eye(3), 1.0, 10.0, 10.0);
-    simulator_clfcbfnmpc.setOpt('clfcbfnmpc', param_clfcbfnmpc);
+    param_dclfdcbf = ParamDCLFDCBF(0.1, gammalist(gammaindex), 10 * eye(3), 1.0, 10.0);
+    simulator_dclfdcbf.setOpt('dclfdcbf', param_dclfdcbf);
+    % NMPC-DCBF simulator
+    simulator_nmpcdclfdcbf = CBFDT(system_param, x0, t0);
+    param_nmpcdclfdcbf = ParamNMPCDCLFDCBF(8, 8, 8, 0.1, gammalist(gammaindex), 10.0 * eye(3), 10.0 * eye(3), 1.0, 10.0, 10.0);
+    simulator_nmpcdclfdcbf.setOpt('nmpcdclfdcbf', param_nmpcdclfdcbf);
     % iterate over states
     x1list = linspace(-2,0,11);
     x2list = linspace(0,2,11);
     x3list = linspace(0,2,11);
     % data collection
     feas_points_dclfdcbf = [];
-    feas_points_clfcbfnmpc = [];
+    feas_points_nmpcdclfdcbf = [];
     infeas_points_all = [];
     
     %% Test feasibility with sampling states among controllers
@@ -48,16 +48,16 @@ for gammaindex = 1:length(gammalist)
                 % solve the problem with MPC-GCBF
                 simulator_dclfdcbf.xcurr = xfeas;
                 [feas_dclfdcbf, ~, ~, ~] = simulator_dclfdcbf.solve;
-                % solve the problem with CBF-NMPC
-                simulator_clfcbfnmpc.xcurr = xfeas;
-                [feas_clfcbfnmpc, ~, ~, ~] = simulator_clfcbfnmpc.solve;
+                % solve the problem with NMPC-DCLF-DCBF
+                simulator_nmpcdclfdcbf.xcurr = xfeas;
+                [feas_nmpcdclfdcbf, ~, ~, ~] = simulator_nmpcdclfdcbf.solve;
                 if feas_dclfdcbf == 1
                     feas_points_dclfdcbf = [feas_points_dclfdcbf, xfeas];
                 end
-                if feas_clfcbfnmpc == 1
-                    feas_points_clfcbfnmpc = [feas_points_clfcbfnmpc, xfeas];
+                if feas_nmpcdclfdcbf == 1
+                    feas_points_nmpcdclfdcbf = [feas_points_nmpcdclfdcbf, xfeas];
                 end
-                if feas_dclfdcbf == 0 && feas_clfcbfnmpc == 0
+                if feas_dclfdcbf == 0 && feas_nmpcdclfdcbf == 0
                     infeas_points_all = [infeas_points_all, xfeas];
                 end
             end
@@ -73,7 +73,7 @@ for gammaindex = 1:length(gammalist)
     hold on;
     scatter3(feas_points_dclfdcbf(1,:),feas_points_dclfdcbf(2,:),feas_points_dclfdcbf(3,:),...
         5, 'o', 'LineWidth', 1.0, 'MarkerEdgeColor', inner_color, 'MarkerFaceColor', inner_color);
-    scatter3(feas_points_clfcbfnmpc(1,:),feas_points_clfcbfnmpc(2,:),feas_points_clfcbfnmpc(3,:),...
+    scatter3(feas_points_nmpcdclfdcbf(1,:),feas_points_nmpcdclfdcbf(2,:),feas_points_nmpcdclfdcbf(3,:),...
         20, 'o', 'LineWidth', 1.2, 'MarkerEdgeColor', outer_color);
     r = 1.0;
     [x,y,z] = sphere(50);
@@ -84,7 +84,7 @@ for gammaindex = 1:length(gammalist)
     if gammaindex == 1
         h=get(gca,'Children');
         h_legend = legend(h([end, end-1]),...
-            {'DCLF-DCBF', 'CLF-CBF-NMPC'}, 'Location', 'NorthEast');
+            {'DCLF-DCBF', 'NMPC-DCLF-DCBF'}, 'Location', 'NorthEast');
         set(h_legend, 'Interpreter','latex');
     end
     set(gca,'LineWidth', 1.0, 'FontSize', 15);
@@ -96,9 +96,9 @@ for gammaindex = 1:length(gammalist)
     zlim([0, 2]);
     view(160, 4);
     grid on;
-    figurename_eps = "feasibility-dclfdbcf" + gammaindex + ".eps";
-    figurename_png = "feasibility-dclfdbcf" + gammaindex + ".png";
-    dataname = "feasibility-dclfdbcf" + gammaindex + ".mat";
+    figurename_eps = "feasibility-dclfdcbf" + gammaindex + ".eps";
+    figurename_png = "feasibility-dclfdcbf" + gammaindex + ".png";
+    dataname = "feasibility-dclfdcbf" + gammaindex + ".mat";
     % save data and generate figures
     print(gcf,strcat('figures/',figurename_eps), '-depsc');
     print(gcf,strcat('figures/',figurename_png), '-dpng', '-r800');
