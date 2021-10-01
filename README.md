@@ -1,6 +1,12 @@
 **Status**: The implementation code for corresponding papers will be merged here and new papers will be added in an inverse order of submission.
 
+### Introduction
+
 In this repository, a collection of our work is presented where nonlinear model predictive control (NMPC) with control Lyapunov functions (CLFs) and control barrier functions (CBFs) are applied.
+
+### Citing
+
+If you find this project useful in your work, please consider citing following work:
 
 * A. Thirugnanam, J. Zeng, K. Sreenath. "A Fast Computational Optimization for Optimal Control and Trajectory Planning for Obstacle Avoidance between Polytopes." *submitted to 2022 IEEE International Conference on Robotics and Automation (ICRA)*. [[arXiv]](https://arxiv.org/abs/2109.12313) [[Video]]() [[Docs]]()
 
