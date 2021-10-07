@@ -8,7 +8,7 @@ In this repository, a collection of our work is presented where nonlinear model 
 
 If you find this project useful in your work, please consider citing following work:
 
-* A. Thirugnanam, J. Zeng, K. Sreenath. "A Fast Computational Optimization for Control and Trajectory Planning for Obstacle Avoidance between Polytopes." *submitted to 2022 IEEE International Conference on Robotics and Automation (ICRA)*. [[arXiv]](https://arxiv.org/abs/2109.12313) [[Video]]() [[Docs]]()
+* A. Thirugnanam, J. Zeng, K. Sreenath. "A Fast Computational Optimization for Control and Trajectory Planning for Obstacle Avoidance between Polytopes." *submitted to 2022 IEEE International Conference on Robotics and Automation (ICRA)*. [[arXiv]](https://arxiv.org/abs/2109.12313) [[Video]](https://youtu.be/wucophROPRY) [[Docs]]()
 
 * J. Zeng, Z. Li, K. Sreenath. "Enhancing Feasibility and Safety of Nonlinear Model Predictive Control with Discrete-Time Control Barrier Functions." *2021 IEEE Conference on Decision and Control (CDC)*. [[arXiv]](https://arxiv.org/abs/2105.10596) [[Docs]](matlab/cdc2021/README.md) [[Code]](matlab/cdc2021)
 
