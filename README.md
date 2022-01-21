@@ -12,4 +12,28 @@ If you find this project useful in your work, please consider citing following w
 
 * J. Zeng, Z. Li, K. Sreenath. "Enhancing Feasibility and Safety of Nonlinear Model Predictive Control with Discrete-Time Control Barrier Functions." *2021 IEEE Conference on Decision and Control (CDC)*. [[arXiv]](https://arxiv.org/abs/2105.10596) [[Docs]](matlab/cdc2021/README.md) [[Code]](matlab/cdc2021)
 
+```
+@inproceedings{zeng2021mpccbf-feasibility,
+  title={Enhancing feasibility and safety of nonlinear model predictive control with discrete-time control barrier functions},
+  author={Zeng, Jun and Li, Zhongyu and Sreenath, Koushil},
+  booktitle={2021 Conference on Decision and Control (CDC)},
+  year={2021},
+  volume={},
+  number={},
+  pages={6137-6144}
+}
+``` 
+
 * J. Zeng, B. Zhang and K. Sreenath. "Safety-Critical Model Predictive Control with Discrete-Time Control Barrier Function." *2021 IEEE American Control Conference (ACC)*. [[IEEE]](https://ieeexplore.ieee.org/document/9483029) [[arXiv]](https://arxiv.org/abs/2007.11718) [[Docs]](matlab/acc2021/README.md) [[Code]](matlab/acc2021)
+
+```
+@inproceedings{zeng2021mpccbf,
+  title={Safety-critical model predictive control with discrete-time control barrier function},
+  author={Zeng, Jun and Zhang, Bike and Sreenath, Koushil},
+  booktitle={2021 American Control Conference (ACC)},
+  year={2021},
+  volume={},
+  number={},
+  pages={3882-3889}
+}
+```
