@@ -4,6 +4,11 @@
 
 In this repository, a collection of our work is presented where nonlinear model predictive control (NMPC) with control Lyapunov functions (CLFs) and control barrier functions (CBFs) are applied.
 
+### Dependencies
+The packages needed for running the code are [Yalmip](https://yalmip.github.io/) and [IPOPT](https://projects.coin-or.org/Ipopt/wiki/MatlabInterface).
+
+We also provide the zipped version of precompiled .mex files for IPOPT in the folder `packages` in case you don't have it. Unzip that file and add those .mex files into your MATLAB path.
+
 ### Citing
 
 If you find this project useful in your work, please consider citing following work:
