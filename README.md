@@ -11,45 +11,16 @@ We also provide the zipped version of precompiled .mex files for IPOPT in the fo
 
 ### Citing
 
+#### Theoretical Publications
+
 If you find this project useful in your work, please consider citing following work:
 
-* A. Thirugnanam, J. Zeng, K. Sreenath. "Safety-Critical Control and Planning for Obstacle Avoidance between Polytopes with Control Barrier Functions." *2022 IEEE International Conference on Robotics and Automation (ICRA)*. [[arXiv]](https://youtu.be/2hKlihdERog) [[Video]](https://youtu.be/wucophROPRY)
+* A. Thirugnanam, J. Zeng, K. Sreenath. "Safety-Critical Control and Planning for Obstacle Avoidance between Polytopes with Control Barrier Functions." *2022 IEEE International Conference on Robotics and Automation (ICRA)*. [[IEEE]](https://ieeexplore.ieee.org/document/9812334) [[arXiv]](https://arxiv.org/abs/2109.12313) [[Video]](https://youtu.be/wucophROPRY) [[BibTex]](bibtex/icra2022_nmpc_dcbf_polytope.md)
 
-```
-@article{thirugnanam2021safetycritical,
-    title={Safety-Critical Control and Planning for Obstacle Avoidance between Polytopes with Control Barrier Functions},
-    author={Akshay Thirugnanam and Jun Zeng and Koushil Sreenath},
-    year={2021},
-    eprint={2109.12313},
-    archivePrefix={arXiv},
-    primaryClass={cs.RO}
-}
-```
+* J. Zeng, Z. Li, K. Sreenath. "Enhancing Feasibility and Safety of Nonlinear Model Predictive Control with Discrete-Time Control Barrier Functions." *2021 IEEE Conference on Decision and Control (CDC)*. [[IEEE]](https://ieeexplore.ieee.org/document/9683174) [[arXiv]](https://arxiv.org/abs/2105.10596) [[Docs]](matlab/cdc2021/README.md) [[Code]](matlab/cdc2021) [[BibTex]](bibtex/cdc2022_nmpc_dcbf_feasibility.md)
 
-* J. Zeng, Z. Li, K. Sreenath. "Enhancing Feasibility and Safety of Nonlinear Model Predictive Control with Discrete-Time Control Barrier Functions." *2021 IEEE Conference on Decision and Control (CDC)*. [[arXiv]](https://arxiv.org/abs/2105.10596) [[Docs]](matlab/cdc2021/README.md) [[Code]](matlab/cdc2021)
+* J. Zeng, B. Zhang and K. Sreenath. "Safety-Critical Model Predictive Control with Discrete-Time Control Barrier Function." *2021 IEEE American Control Conference (ACC)*. [[IEEE]](https://ieeexplore.ieee.org/document/9483029) [[arXiv]](https://arxiv.org/abs/2007.11718) [[Docs]](matlab/acc2021/README.md) [[Code]](matlab/acc2021) [[BibTex]](bibtex/acc2021_nmpc_dcbf.md)
 
-```
-@inproceedings{zeng2021mpccbf-feasibility,
-  title={Enhancing feasibility and safety of nonlinear model predictive control with discrete-time control barrier functions},
-  author={Zeng, Jun and Li, Zhongyu and Sreenath, Koushil},
-  booktitle={2021 Conference on Decision and Control (CDC)},
-  year={2021},
-  volume={},
-  number={},
-  pages={6137-6144}
-}
-``` 
+#### Applicational Publications
 
-* J. Zeng, B. Zhang and K. Sreenath. "Safety-Critical Model Predictive Control with Discrete-Time Control Barrier Function." *2021 IEEE American Control Conference (ACC)*. [[IEEE]](https://ieeexplore.ieee.org/document/9483029) [[arXiv]](https://arxiv.org/abs/2007.11718) [[Docs]](matlab/acc2021/README.md) [[Code]](matlab/acc2021)
-
-```
-@inproceedings{zeng2021mpccbf,
-  title={Safety-critical model predictive control with discrete-time control barrier function},
-  author={Zeng, Jun and Zhang, Bike and Sreenath, Koushil},
-  booktitle={2021 American Control Conference (ACC)},
-  year={2021},
-  volume={},
-  number={},
-  pages={3882-3889}
-}
-```
+* Z. Li, J. Zeng, A. Thirugnanam, K. Sreenath. "Bridging Model-based Safety and Model-free Reinforcement Learning through System Identification of Low Dimensional Linear Models." *2022 Proceedings of Robotics: Science and Systems (RSS)*. [[RSS]](http://www.roboticsproceedings.org/rss18/p033.html) [[arXiv]](https://arxiv.org/abs/2205.05787) [[BibTex]](bibtex/rss2022_nmpc_dcbf_legged_robots.md) [[Webpage]](https://sites.google.com/berkeley.edu/rl-sysid-rss2022/home)
