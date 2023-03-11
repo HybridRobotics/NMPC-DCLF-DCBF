@@ -15,6 +15,8 @@ We also provide the zipped version of precompiled .mex files for IPOPT in the fo
 
 If you find this project useful in your work, please consider citing following work:
 
+* S. Liu, J. Zeng, K. Sreenath and C. Belta. "Iterative Convex Optimization for Model Predictive Control with Discrete-Time High-Order Control Barrier Functions." *2023 IEEE American Control Conference (ACC)*. [[arXiv]](https://arxiv.org/abs/2210.04361) [[Docs]](matlab/acc2023/README.md) [[Code]](matlab/acc2023) [[BibTex]](bibtex/acc2023_impc_dhocbf.md)
+
 * A. Thirugnanam, J. Zeng, K. Sreenath. "Safety-Critical Control and Planning for Obstacle Avoidance between Polytopes with Control Barrier Functions." *2022 IEEE International Conference on Robotics and Automation (ICRA)*. [[IEEE]](https://ieeexplore.ieee.org/document/9812334) [[arXiv]](https://arxiv.org/abs/2109.12313) [[Video]](https://youtu.be/wucophROPRY) [[BibTex]](bibtex/icra2022_nmpc_dcbf_polytope.md)
 
 * J. Zeng, Z. Li, K. Sreenath. "Enhancing Feasibility and Safety of Nonlinear Model Predictive Control with Discrete-Time Control Barrier Functions." *2021 IEEE Conference on Decision and Control (CDC)*. [[IEEE]](https://ieeexplore.ieee.org/document/9683174) [[arXiv]](https://arxiv.org/abs/2105.10596) [[Docs]](matlab/cdc2021/README.md) [[Code]](matlab/cdc2021) [[BibTex]](bibtex/cdc2022_nmpc_dcbf_feasibility.md)
