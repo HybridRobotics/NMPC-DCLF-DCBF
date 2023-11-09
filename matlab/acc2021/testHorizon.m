@@ -54,7 +54,7 @@ controller_mpc_cbf_2.obs = obs;
 controller_mpc_cbf_2.sim(time_total);
 
 params.gamma = 0.15;
-controller_mpc_cbf_3 = MPC_CBF(x0, system, params);
+controller_mpc_cbf_3 = MPCCBF(x0, system, params);
 controller_mpc_cbf_3.obs = obs;
 controller_mpc_cbf_3.sim(time_total);
 
