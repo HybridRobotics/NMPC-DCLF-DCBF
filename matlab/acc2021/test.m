@@ -7,7 +7,7 @@ display_dclf_dcbf = true;
 run_mpc_cbf_one = true;
 display_mpc_cbf_one = true;
 run_mpc_cbf_multiple = true;
-run_mpc_cbf_multiple = true;
+display_mpc_cbf_multiple = true;
 run_mpc_dc = true;
 display_mpc_dc = true;
 
