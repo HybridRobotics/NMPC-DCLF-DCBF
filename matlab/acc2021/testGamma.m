@@ -91,5 +91,6 @@ xticks(-5:1);
 yticks(-5:1);
 xlim([-5,0.2]);
 ylim([-5,0.2]);
+axis square
 print(gcf,'figures/benchmark-gamma.eps', '-depsc');
 print(gcf,'figures/benchmark-gamma.png', '-dpng', '-r800');
