@@ -7,7 +7,7 @@ display_dclf_dcbf = true;
 run_mpc_cbf_one = true;
 display_mpc_cbf_one = true;
 run_mpc_cbf_multiple = true;
-run_mpc_cbf_multiple = true;
+display_mpc_cbf_multiple = true;
 run_mpc_dc = true;
 display_mpc_dc = true;
 
@@ -151,7 +151,7 @@ end
 
 %% Simulate MPC-CBF with other N
 params_mpc_cbf.N = 8;
-if run_mpc_cbf_one
+if run_mpc_cbf_multiple
     fprintf('Run MPC-CBF\n');
     controller_mpc_cbf_multiple = MPCCBF(x0, system, params_mpc_cbf);
     controller_mpc_cbf_multiple.obs = obs;
@@ -159,7 +159,7 @@ if run_mpc_cbf_one
 end
 
 %% Display MPC-CBF simulation with other N
-if display_mpc_cbf_one
+if display_mpc_cbf_multiple
     % Plot simulation
     figure('Renderer', 'painters', 'Position', [0 0 400 400]);
     set(gca,'LooseInset',get(gca,'TightInset'));
